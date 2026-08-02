@@ -324,3 +324,149 @@ need = target[i] - curr[i]
 **Time Complexity:** `O(N)`
 
 **Space Complexity:** `O(N)`
+
+---
+
+# Related Problems
+
+## 1. LeetCode 1526 - Minimum Number of Increments on Subarrays to Form a Target Array
+
+**Link**
+https://leetcode.com/problems/minimum-number-of-increments-on-subarrays-to-form-a-target-array/
+
+### Difference
+
+**LeetCode 1526**
+
+- Increment **any contiguous subarray** in one operation.
+
+Example
+
+```
+[2,3,1]
+
+Increment
+
+[0..2]
+```
+
+Subarray can be of **any length**.
+
+Solution uses Greedy.
+
+```
+answer = target[0]
+
+for(i=1...n-1)
+    answer += max(0,target[i]-target[i-1])
+```
+
+Time Complexity
+
+```
+O(N)
+```
+
+---
+
+## This OA Problem
+
+Increment only contiguous subarrays having length
+
+```
+1
+or
+2
+```
+
+Example
+
+```
+Increment
+
+[3]
+
+or
+
+[3,4]
+```
+
+Longer subarrays are **not allowed**.
+
+Solution uses a different Greedy approach by constructing the array from left to right.
+
+Time Complexity
+
+```
+O(N)
+```
+
+---
+
+## Concepts Required
+
+- Greedy
+- Array Construction
+- Prefix Thinking
+- Range Updates
+- Simulation
+
+---
+
+## Interview Pattern
+
+If the interviewer changes the operation, think about the algorithm again.
+
+### Case 1
+
+Increment subarray of **length ≤ 2**
+
+```
+Current OA Problem
+```
+
+Greedy Simulation
+
+---
+
+### Case 2
+
+Increment subarray of **length ≤ K**
+
+Need a different greedy solution using
+Difference Array / Prefix Sum.
+
+---
+
+### Case 3
+
+Increment **any length** subarray
+
+This becomes
+
+```
+LeetCode 1526
+```
+
+Answer
+
+```java
+ans = target[0];
+
+for(int i=1;i<n;i++)
+    ans += Math.max(0,target[i]-target[i-1]);
+```
+
+---
+
+## Revision Tip
+
+Whenever you see
+
+- Build an array from zeros
+- Increment contiguous ranges
+- Find minimum operations
+
+Always think of **LeetCode 1526** first.
+
+Then check whether the problem has any restriction on the subarray length. If it does, the greedy strategy may need to change.
