@@ -11,76 +11,123 @@ Valid differences are:
 
 ```text
 0, 3, -3, 6, -6, ...
+```
 
 Return the total number of valid binary strings.
 
-If no valid string exists, return 0.
+If no valid string exists, return `0`.
 
-Example
+---
+
+## Example
 
 For:
 
+```text
 N = 3
+```
 
-Possible strings without consecutive 1s:
+Possible strings without consecutive `1`s:
 
+```text
 000
 001
 010
 100
 101
+```
 
 Check:
 
+```text
 000 -> 3 - 0 = 3  -> Valid
 001 -> 2 - 1 = 1  -> Invalid
 010 -> 2 - 1 = 1  -> Invalid
 100 -> 2 - 1 = 1  -> Invalid
 101 -> 1 - 2 = -1 -> Invalid
+```
 
 Therefore:
 
+```text
 Answer = 1
-Test Cases
-Test Case 1
-Input:
-N = 3
+```
 
-Output:
+---
+
+# Test Cases
+
+## Test Case 1
+
+### Input
+
+```text
+N = 3
+```
+
+### Output
+
+```text
 1
+```
 
 Valid string:
 
+```text
 000
+```
 
 Difference:
 
+```text
 3 - 0 = 3
-Test Case 2
-Input:
+```
+
+---
+
+## Test Case 2
+
+### Input
+
+```text
 N = 2
+```
 
-Possible strings without "11":
+Possible strings without `"11"`:
 
+```text
 00
 01
 10
+```
 
 Check:
 
+```text
 00 -> 2 - 0 = 2 -> Invalid
 01 -> 1 - 1 = 0 -> Valid
 10 -> 1 - 1 = 0 -> Valid
+```
 
-Output:
+### Output
 
+```text
 2
-Test Case 3
-Input:
+```
+
+---
+
+## Test Case 3
+
+### Input
+
+```text
 N = 4
+```
 
-Possible strings without "11":
+Possible strings without `"11"`:
 
+```text
 0000
 0001
 0010
@@ -89,97 +136,139 @@ Possible strings without "11":
 1000
 1001
 1010
+```
 
 Valid strings:
 
+```text
 0101 -> 2 - 2 = 0
 1001 -> 2 - 2 = 0
 1010 -> 2 - 2 = 0
+```
 
-Output:
+### Output
 
+```text
 3
-Approach
+```
 
-Use Dynamic Programming with Memoization.
+---
+
+# Approach
+
+Use **Dynamic Programming with Memoization**.
 
 We need to track three things:
 
 1. Current index
 2. Previous character
-3. Difference modulo 3
+3. Difference modulo `3`
 
 Define:
 
+```text
 dp[index][prev][rem]
+```
 
 Where:
 
+```text
 index = current position
 
 prev = previous character
-       0 -> previous character was 0
-       1 -> previous character was 1
+0 -> previous character was 0
+1 -> previous character was 1
 
 rem = (count0 - count1) % 3
+```
 
-We only need the remainder because we only care whether the final difference is divisible by 3.
+We only need the remainder because we only care whether the final difference is divisible by `3`.
 
-Transition
-Choose 0
+---
 
-Adding 0 increases:
+# Transition
 
+## Choose 0
+
+Adding `0` increases:
+
+```text
 count0 - count1
+```
 
-by 1.
+by `1`.
 
 Therefore:
 
+```text
 newRem = (rem + 1) % 3
+```
 
-We can always choose 0.
+We can always choose `0`.
 
-Choose 1
+---
 
-Adding 1 decreases:
+## Choose 1
 
+Adding `1` decreases:
+
+```text
 count0 - count1
+```
 
-by 1.
+by `1`.
 
 Therefore:
 
+```text
 newRem = (rem - 1 + 3) % 3
+```
 
-We can choose 1 only when:
+We can choose `1` only when:
 
+```text
 prev == 0
+```
 
-This prevents the substring "11".
+This prevents the substring `"11"`.
 
-Base Case
+---
+
+# Base Case
 
 When:
 
+```text
 index == N
+```
 
 the complete string has been created.
 
 If:
 
+```text
 rem == 0
+```
 
 then:
 
+```text
 count0 - count1
+```
 
-is a multiple of 3.
+is a multiple of `3`.
 
 Therefore:
 
+```java
 return rem == 0 ? 1 : 0;
-Java Memoization Code
+```
+
+---
+
+# Java Memoization Code
+
+```java
 import java.util.*;
 
 class Solution {
@@ -219,202 +308,314 @@ class Solution {
         return dp[index][prev][rem] = ans;
     }
 }
-Dry Run
+```
+
+---
+
+# Dry Run
 
 For:
 
+```text
 N = 2
+```
 
 Initial call:
 
+```text
 fun(0, 0, 0, 2)
+```
 
 Here:
 
+```text
 index = 0
 prev = 0
 rem = 0
+```
 
-We can choose 0:
+We can choose `0`:
 
+```text
 newRem = (0 + 1) % 3
        = 1
+```
 
 State:
 
+```text
 fun(1, 0, 1, 2)
+```
 
 From here:
 
-Choose 0:
+### Choose 0
 
+```text
 newRem = (1 + 1) % 3
        = 2
+```
 
-String = 00
+String:
 
-Difference = 2
-Invalid
+```text
+00
+```
 
-Choose 1:
+Difference:
 
+```text
+2
+```
+
+Invalid.
+
+### Choose 1
+
+```text
 newRem = (1 - 1 + 3) % 3
        = 0
+```
 
-String = 01
+String:
 
-Difference = 0
-Valid
+```text
+01
+```
 
-Now choose 1 from the initial state:
+Difference:
 
+```text
+0
+```
+
+Valid.
+
+---
+
+Now choose `1` from the initial state:
+
+```text
 newRem = (0 - 1 + 3) % 3
        = 2
+```
 
 State:
 
+```text
 fun(1, 1, 2, 2)
+```
 
 Since:
 
+```text
 prev = 1
+```
 
-we cannot choose another 1.
+we cannot choose another `1`.
 
-So we must choose 0:
+So we choose `0`:
 
-String = 10
+```text
+10
+```
 
-Difference = 0
-Valid
+Difference:
+
+```text
+0
+```
+
+Valid.
 
 Therefore the valid strings are:
 
+```text
 01
 10
+```
 
 Answer:
 
+```text
 2
-Complexity
+```
+
+---
+
+# Complexity
 
 Number of states:
 
+```text
 N × 2 × 3
+```
 
 Each state has at most two transitions.
 
 Therefore:
 
+```text
 Time Complexity  = O(N)
 Space Complexity = O(N)
-Why Memoization?
+```
+
+---
+
+# Why Memoization?
 
 Without memoization, the recursion can calculate the same state many times.
 
 For example:
 
+```text
 fun(index, prev, rem)
+```
 
 may be reached through different strings.
 
 We store the result in:
 
+```text
 dp[index][prev][rem]
+```
 
 and reuse it.
 
 Therefore, instead of exploring all:
 
+```text
 2^N
+```
 
-strings, we only calculate:
+possible binary strings, we calculate only:
 
+```text
 N × 2 × 3
+```
 
 states.
 
-Key Interview Insight
+---
+
+# Key Interview Insight
 
 The important observation is that we don't need the exact value of:
 
+```text
 count0 - count1
+```
 
 We only need:
 
+```text
 (count0 - count1) % 3
+```
 
-because the final difference only needs to be checked for divisibility by 3.
+because the final difference only needs to be checked for divisibility by `3`.
 
 Therefore, our state contains:
 
+```text
 Current Index
 +
 Previous Character
 +
 Difference % 3
+```
 
-This makes the problem a Dynamic Programming + State Tracking + Modular Arithmetic problem.
+This makes the problem a:
 
-Edge Cases
-N = 1
+**Dynamic Programming + State Tracking + Modular Arithmetic**
+
+problem.
+
+---
+
+# Edge Cases
+
+## N = 1
 
 Possible strings:
 
+```text
 0
 1
+```
 
 Differences:
 
+```text
 0 -> 1
 1 -> -1
+```
 
-Neither is a multiple of 3.
+Neither is a multiple of `3`.
 
 Answer:
 
+```text
 0
-N = 2
+```
+
+---
+
+## N = 2
 
 Valid strings:
 
+```text
 01
 10
+```
 
 Answer:
 
+```text
 2
-N = 3
+```
+
+---
+
+## N = 3
 
 Only:
 
+```text
 000
+```
 
 satisfies both conditions.
 
 Answer:
 
+```text
 1
-Related LeetCode Problems
-1. Climbing Stairs
+```
+
+---
+
+# Related LeetCode Problems
+
+## 1. Climbing Stairs
 
 LeetCode 70:
 
 https://leetcode.com/problems/climbing-stairs/
 
-2. Knight Dialer
+## 2. Knight Dialer
 
 LeetCode 935:
 
 https://leetcode.com/problems/knight-dialer/
 
-3. Dice Roll Simulation
+## 3. Dice Roll Simulation
 
 LeetCode 1223:
 
 https://leetcode.com/problems/dice-roll-simulation/
 
-4. House Robber
+## 4. House Robber
 
 LeetCode 198:
 
@@ -422,15 +623,24 @@ https://leetcode.com/problems/house-robber/
 
 The exact problem is custom, but it combines ideas from counting DP, state tracking, and modular arithmetic.
 
-Key Concepts
-Dynamic Programming
-Memoization
-Recursion
-State Tracking
-Modular Arithmetic
-Binary Strings
-Counting DP
-Avoiding Consecutive Characters
-Final Complexity
+---
+
+# Key Concepts
+
+* Dynamic Programming
+* Memoization
+* Recursion
+* State Tracking
+* Modular Arithmetic
+* Binary Strings
+* Counting DP
+* Avoiding Consecutive Characters
+
+---
+
+# Final Complexity
+
+```text
 Time  = O(N)
 Space = O(N)
+```
