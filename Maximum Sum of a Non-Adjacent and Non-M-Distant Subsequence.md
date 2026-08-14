@@ -171,45 +171,47 @@ The complexity depends on the chosen approach:
 # Brute Force Solution (Java)
 
 ```java
+import java.util.Arrays;
+
 class Solution {
 
-    int ans = 0;
+    Integer[][] dp;
+    int n;
 
     public int maxSum(int[] arr, int m) {
 
-        boolean[] chosen = new boolean[arr.length];
+        n = arr.length;
 
-        dfs(0, 0, arr, m, chosen);
+        dp = new Integer[n][n + 1];
 
-        return ans;
+        // n means "no previous element"
+        return solve(0, n, arr, m);
     }
 
-    private void dfs(int index, int sum, int[] arr, int m, boolean[] chosen) {
+    private int solve(int i, int prev, int[] arr, int m) {
 
-        if (index == arr.length) {
-            ans = Math.max(ans, sum);
-            return;
+        if (i == n) {
+            return 0;
         }
 
-        // Skip current element
-        dfs(index + 1, sum, arr, m, chosen);
-
-        // Check whether current element can be selected
-        boolean canTake = true;
-
-        // Adjacent restriction
-        if (index - 1 >= 0 && chosen[index - 1])
-            canTake = false;
-
-        // M-distance restriction
-        if (index - m >= 0 && chosen[index - m])
-            canTake = false;
-
-        if (canTake) {
-            chosen[index] = true;
-            dfs(index + 1, sum + arr[index], arr, m, chosen);
-            chosen[index] = false;
+        if (dp[i][prev] != null) {
+            return dp[i][prev];
         }
+
+        // Don't take
+        int notTake = solve(i + 1, prev, arr, m);
+
+        // Take
+        int take = 0;
+
+        // If prev == n, there is no previous element
+        if (prev == n ||
+            (i - prev != 1 && i - prev != m)) {
+
+            take = arr[i] + solve(i + 1, i, arr, m);
+        }
+
+        return dp[i][prev] = Math.max(take, notTake);
     }
 
     public static void main(String[] args) {
