@@ -498,7 +498,6 @@ fun(1, 3, 1)
 
 # Complete Memoization Code
 
-```java
 class Solution {
 
     static final int MOD = 1_000_000_007;
@@ -514,19 +513,15 @@ class Solution {
         // 3 = no character
         dp = new Integer[n + 1][4][4];
 
-        int ans = 0;
-
-        // First character = 0
-        ans = (ans + fun(1, 3, 0)) % MOD;
-
-        // First character = 1
-        ans = (ans + fun(1, 3, 1)) % MOD;
-
-        return ans;
+        // Start with an empty string
+        // i  = 0  -> no character placed yet
+        // pp = 3  -> no previous-previous character
+        // p  = 3  -> no previous character
+        return fun(0, 3, 3);
     }
 
     /*
-        i  = current index
+        i  = current index to fill
         pp = previous previous character
         p  = previous character
     */
@@ -553,26 +548,22 @@ class Solution {
         // Try current character: 0, 1, or 2
         for (int cur = 0; cur <= 2; cur++) {
 
-            // Condition 1:
             // "00" is not allowed
             if (p == 0 && cur == 0) {
                 continue;
             }
 
-            // Condition 2:
             // "111" is not allowed
             if (pp == 1 && p == 1 && cur == 1) {
                 continue;
             }
 
-            // Condition 3:
             // 2 must have 1 before it
             if (cur == 2 && p != 1) {
                 continue;
             }
 
-            // Condition 3:
-            // 2 must have 1 after it
+            // 2 must be followed by 1
             if (p == 2 && cur != 1) {
                 continue;
             }
@@ -584,7 +575,6 @@ class Solution {
         return dp[i][pp][p] = (int) ans;
     }
 }
-```
 
 ---
 
