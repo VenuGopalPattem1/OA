@@ -87,7 +87,7 @@ class Main {
         for(int i = 0; i < n; i++) {
             dp[i] = -1;
         }
-
+        cost[0]=0; //we cnt consider 0 value 
         System.out.println(fun(0, n, cost, dp));
     }
 
