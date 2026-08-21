@@ -269,3 +269,51 @@ So we do not need to consider permutations of the same frequencies.
 **LeetCode 1641 — Count Sorted Vowel Strings**
 
 https://leetcode.com/problems/count-sorted-vowel-strings/
+
+
+# Related Practice Problems
+
+Focus on:
+
+- Backtracking
+- Non-decreasing strings
+- Frequency / count DP
+- Parity constraints
+
+## Closest Practice Problems
+
+### 1. LeetCode 1079 — Letter Tile Possibilities
+
+Very relevant for understanding how frequency/counts determine the number of strings.
+
+[LeetCode 1079](https://leetcode.com/problems/letter-tile-possibilities/)
+
+### 2. LeetCode 1641 — Count Sorted Vowel Strings ⭐
+
+This is **extremely close** to your problem because it asks for non-decreasing strings made from vowels.
+
+[LeetCode 1641](https://leetcode.com/problems/count-sorted-vowel-strings/)
+
+### 3. LeetCode 22 — Generate Parentheses
+
+Good for learning the `choose → recurse → undo` backtracking pattern.
+
+[LeetCode 22](https://leetcode.com/problems/generate-parentheses/)
+
+### 4. LeetCode 78 — Subsets
+
+Basic backtracking practice.
+
+[LeetCode 78](https://leetcode.com/problems/subsets/)
+
+### 5. LeetCode 90 — Subsets II
+
+Useful for understanding duplicates and frequency-based choices.
+
+[LeetCode 90](https://leetcode.com/problems/subsets-ii/)
+
+### 6. LeetCode 47 — Permutations II
+
+Good practice for handling frequencies instead of blindly generating permutations.
+
+[LeetCode 47](https://leetcode.com/problems/permutations-ii/)
