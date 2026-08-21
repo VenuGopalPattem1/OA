@@ -161,20 +161,15 @@ class Solution {
             return dp[i][prev];
         }
 
-        // Do not rob current house
+        // Don't rob current house
         int notTake = fun(i + 1, prev, a, d);
 
         // Rob current house
         int take = 0;
 
-        // No previous house
-        if(prev == a.length) {
-            take = a[i] + fun(i + 1, i, a, d);
-        }
-
-        // Previous house exists
-        else if(i - prev >= 2 &&
-                Math.abs(a[i] - a[prev]) >= d) {
+        if(prev == a.length ||
+           (i - prev >= 2 &&
+            Math.abs(a[i] - a[prev]) >= d)) {
 
             take = a[i] + fun(i + 1, i, a, d);
         }
