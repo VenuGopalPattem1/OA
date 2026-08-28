@@ -147,7 +147,7 @@ import java.util.*;
 
 class Solution {
 
-    int[] dp;
+    int[][] dp;
     boolean[] travel;
     int[] costs;
 
@@ -161,38 +161,50 @@ class Solution {
             travel[d] = true;
         }
 
-        dp = new int[366];
-        Arrays.fill(dp, -1);
+        dp = new int[366][100];
 
-        return fun(1);
+        for (int[] x : dp) {
+            Arrays.fill(x, -1);
+        }
+
+        return fun(1, 0);
     }
 
-    int fun(int day) {
+    int fun(int day, int tokens) {
 
         if (day > 365) {
             return 0;
         }
 
-        if (dp[day] != -1) {
-            return dp[day];
+        if (dp[day][tokens] != -1) {
+            return dp[day][tokens];
         }
 
-        // No travel on this day
+        // No travel today
         if (!travel[day]) {
-            return dp[day] = fun(day + 1);
+            return dp[day][tokens] = fun(day + 1, tokens);
+        }
+
+        // Use token
+        int useToken = Integer.MAX_VALUE;
+
+        if (tokens > 0) {
+            useToken = fun(day + 1, tokens - 1);
         }
 
         // Buy 1-day pass
-        int one = costs[0] + fun(day + 1);
+        int one = costs[0] + fun(day + 1, tokens);
 
-        // Buy 7-day pass
-        int seven = costs[1] + fun(day + 7);
+        // Buy 7-day pass -> get 1 token
+        int seven = costs[1] + fun(day + 7, tokens + 1);
 
-        // Buy 30-day pass
-        int thirty = costs[2] + fun(day + 30);
+        // Buy 30-day pass -> get 2 tokens
+        int thirty = costs[2] + fun(day + 30, tokens + 2);
 
-        return dp[day] = Math.min(one,
-                Math.min(seven, thirty));
+        return dp[day][tokens] =
+                Math.min(useToken,
+                    Math.min(one,
+                        Math.min(seven, thirty)));
     }
 }
 ```
