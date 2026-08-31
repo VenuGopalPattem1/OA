@@ -27,44 +27,42 @@ A single flip allows you to change a `0` to a `1` or a `1` to a `0`.
 ## Java Implementation
 
 ```java
-public class Solution {
+class Solution {
+
     public static int maxLengthSubarray(String s, int k) {
+
         int maxLength = 0;
         int zeros = 0;
         int ones = 0;
         int left = 0;
 
-        // Expand the right boundary of the window
         for (int right = 0; right < s.length(); right++) {
+
             if (s.charAt(right) == '0') {
                 zeros++;
             } else {
                 ones++;
             }
 
-            // Shrink the window from the left if it is invalid
-            while (Math.abs(zeros - ones) % 2 != 0 || Math.abs(zeros - ones) / 2 > k) {
+            int diff = Math.abs(zeros - ones);
+
+            while (diff % 2 != 0 || diff / 2 > k) {
+
                 if (s.charAt(left) == '0') {
                     zeros--;
                 } else {
                     ones--;
                 }
+
                 left++;
+
+                diff = Math.abs(zeros - ones);
             }
 
-            // Record maximum length if valid
-            if (Math.abs(zeros - ones) / 2 <= k && Math.abs(zeros - ones) % 2 == 0) {
-                maxLength = Math.max(maxLength, right - left + 1);
-            }
+            maxLength = Math.max(maxLength, right - left + 1);
         }
 
         return maxLength;
-    }
-
-    public static void main(String[] args) {
-        String testStr = "0100110";
-        int k = 1;
-        System.out.println("Maximum Subarray Length: " + maxLengthSubarray(testStr, k)); 
     }
 }
 ```
