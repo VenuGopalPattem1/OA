@@ -535,90 +535,55 @@ dp[2][3]
 # 15. Complete Java Memoization Code
 
 ```java
-import java.util.*;
-
 class Solution {
 
-    int n;
-    int K;
-    int D;
-
+    int n, K, D;
     int[] A;
-
     Long[][] dp;
 
     public long maxSum(int[] arr, int k, int d) {
 
         A = arr;
+        n = A.length;
         K = k;
         D = d;
 
-        n = A.length;
-
-        // dp[selected][last]
-        dp = new Long[K + 1][n];
+        dp = new Long[n][K + 1];
 
         long ans = Long.MIN_VALUE;
 
-        // Try every index as the first selected index
         for (int i = 0; i < n; i++) {
-
             ans = Math.max(ans, solve(1, i));
         }
 
         return ans == Long.MIN_VALUE ? 0 : ans;
     }
 
+    long solve(int k, int i) {
 
-    long solve(int selected, int last) {
-
-        // Base case:
-        // exactly K elements have been selected
-        if (selected == K) {
-            return A[last];
+        if (k == K) {
+            return A[i];
         }
 
-
-        // Memoization:
-        // return already calculated state
-        if (dp[selected][last] != null) {
-            return dp[selected][last];
+        if (dp[i][k] != null) {
+            return dp[i][k];
         }
-
 
         long ans = Long.MIN_VALUE;
 
+        for (int j = i + 1; j <= Math.min(n - 1, i + D); j++) {
 
-        // Next index must be after 'last'
-        // and at most D distance away
-        int start = last + 1;
+            if ((A[i] & 1) != (A[j] & 1)) {
 
-        int end = Math.min(n - 1, last + D);
+                long res = solve(k + 1, j);
 
-
-        for (int next = start; next <= end; next++) {
-
-            // Consecutive selected elements
-            // must have different parity
-            if ((A[last] & 1) != (A[next] & 1)) {
-
-                long result = solve(selected + 1, next);
-
-                if (result != Long.MIN_VALUE) {
-
-                    ans = Math.max(
-                        ans,
-                        A[last] + result
-                    );
+                if (res != Long.MIN_VALUE) {
+                    ans = Math.max(ans, A[i] + res);
                 }
             }
         }
 
-
-        // Save the answer
-        dp[selected][last] = ans;
-
-        return ans;
+        return dp[i][k] = ans;
     }
 }
 ```
