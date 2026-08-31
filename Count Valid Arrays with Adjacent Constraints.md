@@ -414,8 +414,7 @@ class Solution {
 
     Integer[][] dp;
 
-    int n;
-    int k;
+    int n, k;
 
     static final int MOD = 1_000_000_007;
 
@@ -424,37 +423,29 @@ class Solution {
         this.n = n;
         this.k = k;
 
+        // k + 1 because last = 0 means no previous element
         dp = new Integer[n][k + 1];
 
-        long ans = 0;
-
-        // Choose the first element
-        for (int first = 1; first <= k; first++) {
-
-            ans = (ans + fun(1, first)) % MOD;
-        }
-
-        return (int) ans;
+        return fun(0, 0);
     }
 
     public int fun(int i, int last) {
 
-        // Complete array constructed
         if (i == n) {
             return 1;
         }
 
-        // Already calculated
         if (dp[i][last] != null) {
             return dp[i][last];
         }
 
         long ans = 0;
 
-        // Try every possible next value
         for (int j = 1; j <= k; j++) {
 
-            if (Math.abs(last - j) <= 1 ||
+            // First element OR valid previous element
+            if (last == 0 ||
+                Math.abs(last - j) <= 1 ||
                 last == 2 * j ||
                 j == 2 * last) {
 
