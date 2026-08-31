@@ -71,7 +71,7 @@ public class SolutionMemo {
     private static int solve(int remTarget, int lastParity, int[] nums) {
         // Base case: exact sum reached
         if (remTarget == 0) {
-            return lastParity != 2 ? 1 : 0;
+            return 1;
         }
 
         if (memo[remTarget][lastParity] != null) {
