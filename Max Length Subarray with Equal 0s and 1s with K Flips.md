@@ -29,40 +29,36 @@ A single flip allows you to change a `0` to a `1` or a `1` to a `0`.
 ```java
 class Solution {
 
-    public static int maxLengthSubarray(String s, int k) {
+    public int maxLengthSubarray(String s, int k) {
 
-        int maxLength = 0;
-        int zeros = 0;
-        int ones = 0;
-        int left = 0;
+        int n = s.length();
 
-        for (int right = 0; right < s.length(); right++) {
+        int[] prefix = new int[n + 1];
 
-            if (s.charAt(right) == '0') {
-                zeros++;
+        // 0 -> -1, 1 -> +1
+        for (int i = 0; i < n; i++) {
+            if (s.charAt(i) == '0') {
+                prefix[i + 1] = prefix[i] - 1;
             } else {
-                ones++;
+                prefix[i + 1] = prefix[i] + 1;
             }
-
-            int diff = Math.abs(zeros - ones);
-
-            while (diff % 2 != 0 || diff / 2 > k) {
-
-                if (s.charAt(left) == '0') {
-                    zeros--;
-                } else {
-                    ones--;
-                }
-
-                left++;
-
-                diff = Math.abs(zeros - ones);
-            }
-
-            maxLength = Math.max(maxLength, right - left + 1);
         }
 
-        return maxLength;
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+
+            for (int j = i + 1; j <= n; j++) {
+
+                int diff = Math.abs(prefix[j] - prefix[i]);
+
+                if (diff % 2 == 0 && diff / 2 <= k) {
+                    ans = Math.max(ans, j - i);
+                }
+            }
+        }
+
+        return ans;
     }
 }
 ```
