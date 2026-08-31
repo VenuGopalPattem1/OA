@@ -100,47 +100,34 @@ class Solution {
 
     public int countStrings(int n) {
 
-        dp = new Long[n][4][2];
+        // last = 4 means no previous character
+        dp = new Long[n][5][2];
 
-        long ans = 0;
-
-        // Choose the first character
-        for (int ch = 0; ch < 4; ch++) {
-
-            // a = 0 -> odd number of a's
-            // b,c,d -> even number of a's
-            int parity = (ch == 0) ? 1 : 0;
-
-            ans = (ans + fun(1, ch, parity, n)) % MOD;
-        }
-
-        return (int) ans;
+        return (int) fun(0, 4, 0, n);
     }
 
     // i      = current position
     // last   = previous character
+    //         0 = a, 1 = b, 2 = c, 3 = d
+    //         4 = no previous character
     // parity = 0 -> even number of a's
     //          1 -> odd number of a's
     public long fun(int i, int last, int parity, int n) {
 
-        // String completed
         if (i == n) {
             return parity == 1 ? 1 : 0;
         }
 
-        // Already calculated
         if (dp[i][last][parity] != null) {
             return dp[i][last][parity];
         }
 
         long ans = 0;
 
-        // Try every next character
         for (int ch = 0; ch < 4; ch++) {
 
-            // Forbidden pairs:
-            // ab, ba, bc, cb, cd, dc
-            if (Math.abs(last - ch) == 1) {
+            // Check forbidden pairs only if previous exists
+            if (last != 4 && Math.abs(last - ch) == 1) {
                 continue;
             }
 
@@ -151,12 +138,7 @@ class Solution {
                 newParity ^= 1;
             }
 
-            ans = (ans + fun(
-                    i + 1,
-                    ch,
-                    newParity,
-                    n
-            )) % MOD;
+            ans = (ans + fun(i + 1, ch, newParity, n)) % MOD;
         }
 
         return dp[i][last][parity] = ans;
