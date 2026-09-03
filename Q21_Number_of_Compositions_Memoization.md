@@ -227,58 +227,50 @@ class Solution {
 
     static final long MOD = 1000000007;
 
-    class Pair {
-        long count;
-        long sumLen;
+    Long[] count;
+    Long[] sumLength;
+    int K;
 
-        Pair(long count, long sumLen) {
-            this.count = count;
-            this.sumLen = sumLen;
-        }
+    public int solve(int N, int K) {
+
+        this.K = K;
+
+        count = new Long[N + 1];
+        sumLength = new Long[N + 1];
+
+        fun(N);
+
+        return (int)(sumLength[N] % MOD);
     }
 
-    Pair[] dp;
+    void fun(int n) {
 
-    public long solve(int N, int K) {
-
-        dp = new Pair[N + 1];
-
-        return fun(N, K).sumLen;
-    }
-
-    private Pair fun(int n, int K) {
-
-        // Base case
         if (n == 0) {
-            return new Pair(1, 0);
+            count[0] = 1L;
+            sumLength[0] = 0L;
+            return;
         }
 
-        // Already calculated
-        if (dp[n] != null) {
-            return dp[n];
+        if (count[n] != null) {
+            return;
         }
 
-        long count = 0;
-        long sumLen = 0;
+        long cnt = 0;
+        long len = 0;
 
-        // Try every possible last part
         for (int x = 1; x <= K && x <= n; x++) {
 
-            Pair prev = fun(n - x, K);
+            fun(n - x);
 
-            // Number of sequences
-            count = (count + prev.count) % MOD;
+            cnt = (cnt + count[n - x]) % MOD;
 
-            // Sum of lengths
-            sumLen =
-                (sumLen
-                + prev.sumLen
-                + prev.count) % MOD;
+            len = (len
+                    + sumLength[n - x]
+                    + count[n - x]) % MOD;
         }
 
-        dp[n] = new Pair(count, sumLen);
-
-        return dp[n];
+        count[n] = cnt;
+        sumLength[n] = len;
     }
 }
 ```
