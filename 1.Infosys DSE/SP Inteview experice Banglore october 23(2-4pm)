@@ -1,63 +1,112 @@
 # Infosys SP/DSE Interview Experience – 2026 Graduate
 
-**Interview Type:** Combined Specialist Programmer (SP) / Digital Specialist Engineer (DSE)
-**Interview Duration:** Approximately 2 hours (2 PM – 4 PM)
-**Candidate Profile:** Fresher, 2026 graduate
+My interview experience for the **Infosys Specialist Programmer (SP) / Digital Specialist Engineer (DSE) combined recruitment process**.
+
+## Interview Overview
+
+| Detail | Information |
+|---|---|
+| Company | Infosys |
+| Recruitment Process | Combined SP/DSE |
+| Candidate Profile | Fresher – 2026 Graduate |
+| Interview Duration | Approximately 2 hours |
+| Interview Timing | 2:00 PM – 4:00 PM |
+| Coding Platform | Wingspan Portal |
+| Main Topics | DSA, Java, SQL, System Design, Microservices, AI |
+
+---
 
 ## 1. Coding Assessment – Wingspan Portal
 
-The interviewer first reviewed my resume and noticed that I had mentioned solving 700+ DSA problems. He asked me to solve two coding questions on the Wingspan portal within 45 minutes.
+The interviewer first reviewed my resume and noticed that I had mentioned solving 700+ DSA problems. I was asked to solve two coding questions on the Wingspan portal within 45 minutes.
 
-**Question 1: Array Multiplication with Overflow Handling**
+### Question 1: Array Multiplication with Overflow Handling
 
-The problem involved multiplying array elements according to a specified operation and handling overflow using modulo (10^9).
+The problem involved multiplying array elements according to a specified operation while handling overflow using modulo \(10^9\).
 
-I solved the question completely and explained my approach.
+- I solved the problem completely.
+- I explained my approach to the interviewer.
+- The interviewer described the solution as simple during the subsequent discussion.
 
-**Question 2: Frequency of Bit Lengths**
+### Question 2: Frequency of Bit Lengths
 
 The problem involved counting the number of bits required to represent each array element, finding the frequency of each bit length, and returning the minimum original element if a bit length occurred more than half the array size.
 
-I used a `while` loop to count the bits of each number, stored the bit counts in an array, and used a `HashMap` to calculate their frequencies. I then identified the maximum frequency and found the minimum original element with the corresponding bit length.
+**My approach:**
 
-The public test cases passed, but the hidden test cases failed. I explained my algorithm, and the interviewer asked me to dry-run both solutions. He described the first solution as simple and discussed the second question's hidden-test failures with me.
+1. Used a `while` loop to count the bits in each number by repeatedly dividing it by 2.
+2. Stored the bit count of every element in an array.
+3. Used a `HashMap` to calculate the frequency of each bit length.
+4. Found the maximum frequency and its corresponding bit length.
+5. Found the minimum original array element with that bit length.
+
+**Result:** The public test cases passed, but the hidden test cases failed.
+
+The interviewer asked me to dry-run both solutions. I explained my approach to the second problem, and we discussed the hidden-test failures.
+
+---
 
 ## 2. Technical Interview
 
-### DSA and Algorithms
+### A. DSA and Graph Algorithms
 
-The interviewer asked me to introduce myself and then tested my problem-solving skills using pen and paper.
+The interviewer asked me to introduce myself and then gave me algorithmic problems to solve using pen and paper.
 
-The questions included:
+#### Question 1: Lowest Common Ancestor (LCA) of a Binary Tree
 
-- **Lowest Common Ancestor (LCA) of a Binary Tree:** I wrote the code and explained the dry run.
-- **Course Schedule I:** I implemented the solution on paper and explained the dry run.
-- **Connected Components in a Graph:** I explained the optimal approach, walked through an example, and discussed time and space complexity.
+- Wrote the solution on paper.
+- Explained the algorithm and dry run.
 
-The interviewer was satisfied with my explanations of these problems.
+#### Question 2: Course Schedule I
 
-He also asked which DSA topics I was familiar with. I mentioned graph algorithms such as Dijkstra's, Bellman–Ford, Floyd–Warshall, Prim's and Kruskal's algorithms.
+- Implemented the solution on paper.
+- Explained the approach and dry run.
 
-### Resume and DSA Practice
+#### Question 3: Connected Components in a Graph
 
-The interviewer asked how many of the 700+ DSA problems I had solved using AI. I explained that I had been practising DSA since after completing my BCA and that I focused on understanding the problem, developing the solution and writing the code myself.
+- Explained the optimal approach.
+- Walked through an example.
+- Discussed time and space complexity.
 
-He also asked where I had learned Spring Boot, microservices and low-level design. I explained that I had learned Spring Boot and microservices through a coaching institute in Hyderabad and studied LLD through YouTube and Telegram resources.
+The interviewer was satisfied with my explanations of these three problems.
 
-### SQL and Database Design
+He also asked which DSA topics I was familiar with. I mentioned graph algorithms, including:
+
+- Dijkstra's algorithm
+- Bellman–Ford algorithm
+- Floyd–Warshall algorithm
+- Prim's algorithm
+- Kruskal's algorithm
+
+### B. Resume and DSA Practice
+
+The interviewer asked how many of the 700+ DSA problems I had solved using AI.
+
+I explained that I had been practising DSA since after completing my BCA and that I focused on understanding the problem, developing the solution and writing the code myself.
+
+He also asked where I had learned Spring Boot, microservices and Low-Level Design (LLD).
+
+I explained that I had learned Spring Boot and microservices through a coaching institute in Hyderabad and studied LLD using YouTube and Telegram resources.
+
+### C. SQL and Database Design
 
 **Questions asked:**
 
-- Find the fifth-highest salary.
-- Design database tables for orders and products in an e-commerce application.
+1. Find the fifth-highest salary.
+2. Design database tables for orders and products in an e-commerce application.
 
-For the fifth-highest salary, I provided two approaches: `LIMIT` with `OFFSET` and `DENSE_RANK()`.
+For the fifth-highest salary, I provided two approaches:
 
-During the database-design discussion, I initially missed the relationship required to store multiple products in a single order. When the interviewer asked how I would implement it, I proposed a separate mapping table containing `order_id` and `product_id`.
+- `LIMIT` with `OFFSET`
+- `DENSE_RANK()`
 
-### JWT and System Design
+During the database-design discussion, I initially missed the relationship needed to store multiple products in a single order.
 
-The interviewer asked about:
+When the interviewer asked how I would implement it, I proposed a separate mapping table containing `order_id` and `product_id`.
+
+### D. JWT and System Design
+
+The interviewer asked questions about the following topics:
 
 - JWT and its implementation in my project.
 - Handling concurrent requests when multiple users try to book the same ticket.
@@ -65,39 +114,81 @@ The interviewer asked about:
 - JWT revocation mechanisms.
 - Rate limiting in my AI Resume Analyzer project.
 
-For concurrent ticket booking, I suggested optimistic locking and atomic database operations.
+**My answers:**
 
-For service failures, I discussed the circuit breaker concept. For JWT revocation, I explained access tokens and refresh tokens, while acknowledging that I had not implemented a revocation mechanism in my project.
+- **Concurrent ticket booking:** Suggested optimistic locking and atomic database operations.
+- **Service failures:** Discussed the circuit breaker pattern.
+- **JWT revocation:** Explained access tokens and refresh tokens while acknowledging that I had not implemented a revocation mechanism in my project.
+- **Rate limiting:** Explained fixed-window, sliding-window, token-bucket and leaky-bucket algorithms. I clarified that I had not implemented rate limiting in my project.
 
-For rate limiting, I discussed fixed-window, sliding-window, token-bucket and leaky-bucket algorithms. I clarified that I had not implemented rate limiting in my project.
+### E. AI and Project Discussion
 
-### AI and Project Discussion
+The interviewer asked whether my three projects were individual or team projects. I explained that they were my personal projects.
 
-The interviewer asked whether my three projects were individual or team projects. I explained that they were personal projects.
+The AI-related questions included:
 
-He then asked about:
+- What is Retrieval-Augmented Generation (RAG)?
+- What are AI hallucinations?
+- RAG vs. fine-tuning.
+- Rate limiting in an AI Resume Analyzer.
 
-- Retrieval-Augmented Generation (RAG).
-- AI hallucinations.
-- RAG versus fine-tuning.
-- Rate limiting in my AI Resume Analyzer.
+I explained the concepts and how retrieved information can be provided as context to an LLM to help generate relevant answers.
 
-I explained the concepts and how retrieval can provide relevant information to an LLM as context for generating answers.
+---
 
 ## 3. Final Discussion and Feedback
 
-The interviewer asked whether I could solve a random LeetCode Hard problem. I said I would confidently attempt a Medium-level problem and would try to solve a Hard problem as well. When asked how many Medium problems I had solved, I estimated around 400–500.
+The interviewer asked whether I could solve a random LeetCode Hard problem.
 
-At the end, I asked where I could improve. The interviewer said that my profile was good and matched the requirements. He advised me to continue solve DSA don't stop it, particularly about AI, and mentioned that learn as much as AI.
+I said I was confident in attempting Medium-level problems and would try to solve a Hard problem as well.
+
+When asked how many Medium problems I had solved, I estimated around 400–500.
+
+At the end, I asked the interviewer where I could improve.
+
+He told me that my profile was good and matched the requirements. He advised me to continue practising DSA without stopping and to keep learning, particularly about AI.
 
 The interview concluded with a brief, friendly conversation about my name and hometown.
 
-## Overall Experience
+---
 
-The interview covered DSA, graph algorithms, SQL, database design, JWT, microservices, system design, project architecture and AI fundamentals.
+## 4. Overall Experience
 
-The most challenging part was the coding assessment, where the second question passed the public test cases but failed hidden tests. During the technical interview, I was able to solve three DSA problems on paper and explain my approaches and complexity.
+The interview covered a wide range of topics:
 
-Overall, it was a comprehensive technical interview, and I learned which areas I need to strengthen further, particularly database design, service resilience and implementation-level system design.
+- Data Structures and Algorithms
+- Trees and Graphs
+- SQL and Database Design
+- Java Backend Development
+- JWT and Security
+- Microservices and API Gateway
+- System Design
+- Rate Limiting
+- RAG and AI Fundamentals
+- Resume and Project Discussion
 
-**Preparation advice:** Practise DSA on paper, explain dry runs and complexity clearly, understand every line of your resume projects, and prepare for follow-up questions on database relationships, security and microservices.
+The coding assessment was challenging because the second question passed public test cases but failed hidden tests.
+
+During the technical interview, I was able to solve three DSA problems on paper and explain the approaches and complexity.
+
+Overall, it was a comprehensive technical interview that helped me identify areas to improve, particularly database relationships, service resilience and implementation-level system design.
+
+## 5. Preparation Tips for Future Candidates
+
+Based on my experience, I recommend preparing the following:
+
+- Practise DSA problems on paper, not only in an IDE.
+- Be comfortable explaining dry runs and time and space complexity.
+- Revise tree and graph algorithms, including topological sorting and connected components.
+- Practise SQL queries involving ranking, joins and aggregation.
+- Understand every feature and design decision in your resume projects.
+- Prepare for follow-up questions on database relationships and concurrency.
+- Revise JWT, Spring Security, microservices, circuit breakers and rate limiting.
+- Prepare basic AI concepts, especially RAG, hallucinations and fine-tuning.
+- Be honest about what you have implemented and what you know conceptually.
+
+---
+
+**Disclaimer:** This is my personal interview experience. Questions and evaluation criteria may vary across candidates and recruitment cycles.
+
+If this experience helps you, feel free to use it for preparation. All the best to everyone preparing for Infosys SP/DSE!
