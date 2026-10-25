@@ -1,0 +1,103 @@
+# Infosys SP/DSE Interview Experience – 2026 Graduate
+
+**Interview Type:** Combined Specialist Programmer (SP) / Digital Specialist Engineer (DSE)
+**Interview Duration:** Approximately 2 hours (2 PM – 4 PM)
+**Candidate Profile:** Fresher, 2026 graduate
+
+## 1. Coding Assessment – Wingspan Portal
+
+The interviewer first reviewed my resume and noticed that I had mentioned solving 700+ DSA problems. He asked me to solve two coding questions on the Wingspan portal within 45 minutes.
+
+**Question 1: Array Multiplication with Overflow Handling**
+
+The problem involved multiplying array elements according to a specified operation and handling overflow using modulo (10^9).
+
+I solved the question completely and explained my approach.
+
+**Question 2: Frequency of Bit Lengths**
+
+The problem involved counting the number of bits required to represent each array element, finding the frequency of each bit length, and returning the minimum original element if a bit length occurred more than half the array size.
+
+I used a `while` loop to count the bits of each number, stored the bit counts in an array, and used a `HashMap` to calculate their frequencies. I then identified the maximum frequency and found the minimum original element with the corresponding bit length.
+
+The public test cases passed, but the hidden test cases failed. I explained my algorithm, and the interviewer asked me to dry-run both solutions. He described the first solution as simple and discussed the second question's hidden-test failures with me.
+
+## 2. Technical Interview
+
+### DSA and Algorithms
+
+The interviewer asked me to introduce myself and then tested my problem-solving skills using pen and paper.
+
+The questions included:
+
+- **Lowest Common Ancestor (LCA) of a Binary Tree:** I wrote the code and explained the dry run.
+- **Course Schedule I:** I implemented the solution on paper and explained the dry run.
+- **Connected Components in a Graph:** I explained the optimal approach, walked through an example, and discussed time and space complexity.
+
+The interviewer was satisfied with my explanations of these problems.
+
+He also asked which DSA topics I was familiar with. I mentioned graph algorithms such as Dijkstra's, Bellman–Ford, Floyd–Warshall, Prim's and Kruskal's algorithms.
+
+### Resume and DSA Practice
+
+The interviewer asked how many of the 700+ DSA problems I had solved using AI. I explained that I had been practising DSA since after completing my BCA and that I focused on understanding the problem, developing the solution and writing the code myself.
+
+He also asked where I had learned Spring Boot, microservices and low-level design. I explained that I had learned Spring Boot and microservices through a coaching institute in Hyderabad and studied LLD through YouTube and Telegram resources.
+
+### SQL and Database Design
+
+**Questions asked:**
+
+- Find the fifth-highest salary.
+- Design database tables for orders and products in an e-commerce application.
+
+For the fifth-highest salary, I provided two approaches: `LIMIT` with `OFFSET` and `DENSE_RANK()`.
+
+During the database-design discussion, I initially missed the relationship required to store multiple products in a single order. When the interviewer asked how I would implement it, I proposed a separate mapping table containing `order_id` and `product_id`.
+
+### JWT and System Design
+
+The interviewer asked about:
+
+- JWT and its implementation in my project.
+- Handling concurrent requests when multiple users try to book the same ticket.
+- Handling service failures at the API Gateway level.
+- JWT revocation mechanisms.
+- Rate limiting in my AI Resume Analyzer project.
+
+For concurrent ticket booking, I suggested optimistic locking and atomic database operations.
+
+For service failures, I discussed the circuit breaker concept. For JWT revocation, I explained access tokens and refresh tokens, while acknowledging that I had not implemented a revocation mechanism in my project.
+
+For rate limiting, I discussed fixed-window, sliding-window, token-bucket and leaky-bucket algorithms. I clarified that I had not implemented rate limiting in my project.
+
+### AI and Project Discussion
+
+The interviewer asked whether my three projects were individual or team projects. I explained that they were personal projects.
+
+He then asked about:
+
+- Retrieval-Augmented Generation (RAG).
+- AI hallucinations.
+- RAG versus fine-tuning.
+- Rate limiting in my AI Resume Analyzer.
+
+I explained the concepts and how retrieval can provide relevant information to an LLM as context for generating answers.
+
+## 3. Final Discussion and Feedback
+
+The interviewer asked whether I could solve a random LeetCode Hard problem. I said I would confidently attempt a Medium-level problem and would try to solve a Hard problem as well. When asked how many Medium problems I had solved, I estimated around 400–500.
+
+At the end, I asked where I could improve. The interviewer said that my profile was good and matched the requirements. He advised me to continue solve DSA don't stop it, particularly about AI, and mentioned that learn as much as AI.
+
+The interview concluded with a brief, friendly conversation about my name and hometown.
+
+## Overall Experience
+
+The interview covered DSA, graph algorithms, SQL, database design, JWT, microservices, system design, project architecture and AI fundamentals.
+
+The most challenging part was the coding assessment, where the second question passed the public test cases but failed hidden tests. During the technical interview, I was able to solve three DSA problems on paper and explain my approaches and complexity.
+
+Overall, it was a comprehensive technical interview, and I learned which areas I need to strengthen further, particularly database design, service resilience and implementation-level system design.
+
+**Preparation advice:** Practise DSA on paper, explain dry runs and complexity clearly, understand every line of your resume projects, and prepare for follow-up questions on database relationships, security and microservices.
